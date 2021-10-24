@@ -1,0 +1,14 @@
+.search-form{
+  margin-top: 3vh;
+}
+
+.submit{
+    margin-left: 1vw;
+    border: 1px solid transparent;
+	border-radius: 3px;
+}
+
+#header-search{
+    border: 1px solid transparent;
+	border-radius: 3px;
+}
