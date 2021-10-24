@@ -11,7 +11,7 @@ const SearchBar = ({ inputText, setInpuText}) => {
                 id="header-search"
                 placeholder="Enter keywords"
                 name="s"
-                onInput={e => setInpuText(e.target.value)}
+                onInput={e => setInpuText(e.target.value.toLowerCase())}
                 value={inputText}
             />
         </form>

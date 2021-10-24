@@ -12,10 +12,6 @@ const Posting = ({post}) => {
 
     const [toggle, setToggle] = useState(true);
 
-    const toggleHandler = () => {
-        setToggle(false);
-    }
-
     const jobtitleHandler = (e) => {setJobTitle(e.target.value)};
     const locationHandler = (e) => { setLocation(e.target.value) };
     const worktypeHandler = (e) => { setWorkTypoe(e.target.value) };
@@ -27,6 +23,10 @@ const Posting = ({post}) => {
         if (e.key === 'Enter') {
             setTags([...tags, e.target.value]);
         }
+    }
+
+    const editHandler = async() => {
+        setToggle(false);
     }
 
     const updateHandler = async() => {
@@ -44,8 +44,6 @@ const Posting = ({post}) => {
         }else{
             _tags = t.slice(0, t.length);;
         }
-        
-
 
         await axios.put(`http://18.220.70.6:8000/posts/${post._id}`, 
         {
@@ -90,7 +88,7 @@ const Posting = ({post}) => {
         <tr>
             <td>
                 {toggle ? (
-                    <span onDoubleClick={toggleHandler}>{post.jobtitle}</span>
+                    <span>{post.jobtitle}</span>
                 ) : (
                     <textarea defaultValue={post.jobtitle} onChange={jobtitleHandler}></textarea>
                 )}
@@ -101,35 +99,35 @@ const Posting = ({post}) => {
                 }</td>
             <td>
                 {toggle ? (
-                    <span onDoubleClick={toggleHandler}>{post.location}</span>
+                    <span>{post.location}</span>
                 ) : (
                         <textarea defaultValue={post.location} onChange={locationHandler}></textarea>
                 )}
             </td>
             <td>
                 {toggle ? (
-                    <span onDoubleClick={toggleHandler}>{post.worktype}</span>
+                    <span>{post.worktype}</span>
                 ) : (
                         <textarea defaultValue={post.worktype} onChange={worktypeHandler}></textarea>
                 )}
             </td>
             <td>
                 {toggle ? (
-                    <span onDoubleClick={toggleHandler}>{post.jobcondition}</span>
+                    <span>{post.jobcondition}</span>
                 ) : (
                         <textarea defaultValue={post.jobcondition} onChange={jobconditionHandler}></textarea>
                 )}
             </td>
             <td>
                 {toggle ? (
-                    <span onDoubleClick={toggleHandler}>{post.jobdescription}</span>
+                    <span>{post.jobdescription}</span>
                 ) : (
                         <textarea defaultValue={post.jobdescription} onChange={jobdescriptionHandler}></textarea>
                 )}
             </td>
             <td>
                 {toggle ? (
-                    <span onDoubleClick={toggleHandler}>{post.postdate}</span>
+                    <span>{post.postdate}</span>
                 ) : (
                         <textarea defaultValue={post.postdate} onChange={postdateHandler}></textarea>
                 )}
@@ -141,14 +139,16 @@ const Posting = ({post}) => {
                     </ul>
                 </div>
                 {toggle ? (
-                    <span onDoubleClick={toggleHandler}>
+                    <span>
                         {post.tags.map((tag) => { return <li key={tag}>{tag}</li> })}
                     </span>
                 ) : (
-                    <input type="text" onKeyDown={handleKeyDown}></input>
+                    <input type="text" onKeyDown={handleKeyDown} placeholder="Press Enter to add new tag..."></input>
                 )}
             </td>
             <td className="actions">
+                <button onClick={editHandler}>Edit</button>
+
                 <button onClick={updateHandler}>Update</button>
 
                 <button onClick={deleteHandler}>Delete</button>

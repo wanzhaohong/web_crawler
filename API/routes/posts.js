@@ -6,7 +6,7 @@ const Post = require('../Model/Posts');
 //Get All of the Posts
 router.get('/', async (request, response) => {
     try {
-        const posts = await Post.find().limit(100).skip(0).exec();
+        const posts = await Post.find().limit(501).skip(0).exec();
         response.json(posts);
     } catch (err) {
         response.json({ message: err });
