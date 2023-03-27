@@ -15,18 +15,9 @@ Technologies:
 How does it work? 
 - Separate from the client and API server. Store data into MongoDB after scraping.
 
-Next Step: 
-- I can set up a cron job for the crawler to scrape the data from indeed.com frequently.
-
 ## API Server
 Features: 
 - GET, PUT, DELETE
-
-Warning
-- Load 500 job posts each time will take at least 13 sec(tested by Postman). I suggest we can limit the number to 50 to get a better loading speed.
-
-Next Step: 
-- Can use API caching to guarantee the high performance of the API server. Or create a pagination method if I don't need to load a large amount of data every time.
 
 ## React Client
 Features: 
@@ -44,6 +35,3 @@ How to add custom tags?
 How do Delete and Soft Delete work?
 - The Delete button will remove the job post from the database.
 - The Soft Delete button will hide the post from the user, but the post still remains in the database.
-
-Next Step:
-- More features and UI improvement. 
